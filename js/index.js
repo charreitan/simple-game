@@ -1,8 +1,28 @@
+ //Get username
+ var elUsername = document.getElementById('username');
+ //Get feedback element
+ var elMsg = document.getElementById('feedback');
 
- // Initialize game state
+ //Declare function
+ function checkUsername(minLength) {
+  if (elUsername.ariaValueMax.length < minLength) {
+    elMsg.textContent = 'Username must be ' + minLength +
+    ' characters or more';
+  } else {
+    elMsg.innerHTML = '';
+  }
+ }
+ //When it loses focus
+ elUsername.addEventListener('blur', function() {
+  checkUsername(5);
+ }, false);
+
+
+// Initialize game state
  const board = Array(9).fill(null);  // 9 cells on the board
  let currentPlayer = 'X';  // Start with player X
  let gameOver = false;  // Track if the game is over
+
 
  // Select elements
  const cells = document.querySelectorAll('.cell');
